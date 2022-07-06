@@ -1,8 +1,13 @@
 package multithreads;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 public class writeBuffer<T> implements Runnable{
+
+	private static final SecureRandom 
+	generator = new SecureRandom();
 
 	private final buffer<T> sharedLocation;
 	
@@ -14,13 +19,13 @@ public class writeBuffer<T> implements Runnable{
 		this.vetor.addAll(vetorList);
 	}
 	public void run() {
-		
+		Vector<T> list = new Vector<>();
 		for (T element: vetor) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(generator.nextInt(3000));
 				sharedLocation.putBuffer(element);
-				
-				System.out.printf("\t%s\n",element);
+				list.add(element);
+				System.out.printf("\t%s\n",list);
 				}
 			catch(InterruptedException e){
 				Thread.currentThread().interrupt();				

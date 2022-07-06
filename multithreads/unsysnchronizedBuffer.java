@@ -5,11 +5,11 @@ public class unsysnchronizedBuffer<E> implements buffer<E> {
 	
 	public void putBuffer(E value) 
 			throws InterruptedException{
-		System.out.printf("Escrevendo valor: ", value);
+		System.out.printf("Escrevendo valor: \t %s", value);
 		buffer = value;
 	}
 	public E getBuffer() throws InterruptedException{
-		System.out.printf("Leitura valor: ", buffer);
+		System.out.printf("Leitura valor: \t\t %s", buffer);
 		return buffer;
 	}
 }

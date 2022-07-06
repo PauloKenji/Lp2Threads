@@ -1,3 +1,12 @@
+/*
+ Paulo Kenji - SP3045382
+ Ryan Salomão - SP3044521
+ Thiago César - SP3044823
+ Henrique Baesa - SP3045048
+ Yoane Miyamura - SP3046117
+ Isabelle Gomes - SP3045374
+*/
+
 package multithreads;
 
 import java.util.ArrayList;
@@ -15,14 +24,14 @@ public class mainMultiThreads {
 		ExecutorService  threadRun = Executors.newCachedThreadPool();
 		buffer<String> sharedLocationString = new unsysnchronizedBuffer<String>();
 
-		List<String> vetorString = new ArrayList<>(Arrays.asList("Acorda","Pedrinho","Que","Hoje","Tem","Campeonato"));
+		List<String> vetorString = new ArrayList<>(Arrays.asList("ab","cd","ef","gh","ij","kl"));
 		
 		System.out.printf("Thread running\t\tValue\t "+ "Sum write\tSum read\n");
 		System.out.println("-------------------------------------------------------------------");
 		threadRun.execute(new writeBuffer<String>(sharedLocationString,vetorString));
 		threadRun.execute(new readBuffer<String>(sharedLocationString,vetorString.size()));
 		
-		threadRun.awaitTermination(vetorString.size()+1, TimeUnit.SECONDS);		
+		threadRun.awaitTermination(vetorString.size()*3, 	TimeUnit.SECONDS);		
 		
 		buffer<Integer> sharedLocationInt = new unsysnchronizedBuffer<Integer>();
 
@@ -33,7 +42,7 @@ public class mainMultiThreads {
 		threadRun.execute(new writeBuffer<Integer>(sharedLocationInt,vetorInteger));
 		threadRun.execute(new readBuffer<Integer>(sharedLocationInt,vetorInteger.size()));
 		
-		threadRun.awaitTermination(vetorInteger.size()+1, TimeUnit.SECONDS);	
+		threadRun.awaitTermination(vetorInteger.size()*3, TimeUnit.SECONDS);	
 
 		buffer<Float> sharedLocationFloat = new unsysnchronizedBuffer<Float>();
 
@@ -44,7 +53,7 @@ public class mainMultiThreads {
 		threadRun.execute(new writeBuffer<Float>(sharedLocationFloat,vetorFloat));
 		threadRun.execute(new readBuffer<Float>(sharedLocationFloat,vetorFloat.size()));
 		threadRun.shutdown();
-		threadRun.awaitTermination(vetorFloat.size()+1, TimeUnit.SECONDS);	
+		threadRun.awaitTermination(vetorFloat.size()*3, TimeUnit.SECONDS);	
 		
 		
 	}
